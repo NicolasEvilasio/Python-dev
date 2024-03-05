@@ -1,5 +1,5 @@
 class Veiculo:
-    """Essa é a classe Veiculo. Essa classe é utilizada para instanciar novos carros."""
+    """Essa é a classe Veiculo. Essa classe é utilizada para instanciar novos veículos."""
 
     def __init__(self, cor, tipo_combustivel, potencia):
         self.cor = cor
