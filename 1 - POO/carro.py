@@ -10,7 +10,7 @@ class Carro(veiculo.Veiculo):
 
     def abastecer(self, qtd_combustivel):
         print('O método foi chamado a partir da classe carro')
-        if self.qtd_combustivel >= 30:
+        if self.qtd_combustivel >= 30:  # usando o getter qtd_combustivel definido na superclasse
             print('O tanque do carro está cheio')
         else:
-            super().abastecer(qtd_combustivel)
+            super().abastecer(qtd_combustivel)  # usando o método definido na superclasse
