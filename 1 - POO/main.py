@@ -1,6 +1,6 @@
 import carro
 import moto
-
+import veiculo
 
 uno_vermelho = carro.Carro('vermelho', 'gasolina', 90, 4)
 uno_vermelho.ligar()
@@ -23,3 +23,9 @@ uno_vermelho.desligar()
 
 moto_vermelha = moto.Moto('vermelho', 'gasolina', 90, 110)
 moto_vermelha.ligar()
+
+# verificando se o objeto do tipo Moto é uma instância da superclasse Veiculo
+if isinstance(moto_vermelha, veiculo.Veiculo):
+    print('A classe é um veículo!')
+else:
+    print('A classe não é um veículo!')

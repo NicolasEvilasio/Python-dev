@@ -1,7 +1,8 @@
 import abc
+import interface_veiculo
 
 
-class Veiculo(abc.ABC):
+class Veiculo(interface_veiculo.InterfaceVeiculo):
     """Essa é a classe Veiculo. Essa classe é utilizada para instanciar novos veículos."""
 
     def __init__(self, cor, tipo_combustivel, potencia):
