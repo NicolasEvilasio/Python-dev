@@ -1,3 +1,7 @@
+import abc
+from abc import ABC, abstractmethod
+
+
 class Veiculo:
     """Essa é a classe Veiculo. Essa classe é utilizada para instanciar novos veículos."""
 
@@ -7,7 +11,7 @@ class Veiculo:
         self.__potencia = potencia
         self.__qtd_combustivel = 0
         self.__is_ligado = False
-        self.__velocidade = 0
+        self._velocidade = 0
         self._libras = 0
 
     def __del__(self):
@@ -18,6 +22,7 @@ class Veiculo:
         self.__qtd_combustivel += qtd_combustivel
 
     def ligar(self):
+        # Este método nao deve ser sobrescrito.
         if self.__is_ligado:
             print('O veículo já está ligado!')
         else:
@@ -31,11 +36,9 @@ class Veiculo:
             self.__is_ligado = False
             print('O veículo foi desligado!')
 
-    def acelerar(self, velocidade=10):
-        if self.__is_ligado:
-            self.__velocidade += velocidade
-        else:
-            print('O veículo está desligado!')
+    @abc.abstractmethod
+    def acelerar(self):
+        pass
 
     # Getters e Setters
     @property
@@ -60,7 +63,7 @@ class Veiculo:
 
     @property
     def velocidade(self):
-        return self.__velocidade
+        return self._velocidade
 
     @cor.setter
     def cor(self, cor):

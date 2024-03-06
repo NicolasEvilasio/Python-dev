@@ -14,3 +14,9 @@ class Carro(veiculo.Veiculo):
             print('O tanque do carro está cheio')
         else:
             super().abastecer(qtd_combustivel)  # usando o método definido na superclasse
+
+    def acelerar(self, velocidade=10):
+        if self.is_ligado:
+            self._velocidade += velocidade
+        else:
+            print('O carro está desligado!')
