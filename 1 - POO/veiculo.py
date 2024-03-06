@@ -1,8 +1,7 @@
 import abc
-from abc import ABC, abstractmethod
 
 
-class Veiculo:
+class Veiculo(abc.ABC):
     """Essa é a classe Veiculo. Essa classe é utilizada para instanciar novos veículos."""
 
     def __init__(self, cor, tipo_combustivel, potencia):
