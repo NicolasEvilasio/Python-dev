@@ -1,21 +1,12 @@
-# 0 | 1 | 2 | 3 | 4
-# 5 | 2 | 4 | 6 | 1
+from gerar_lista import gerar_lista
 
-numeros = list()
-tamanho = int(input("Digite o tamanho do vetor: "))
-
-for i in range(tamanho):
-    valor = int(input(f'Digite o número do vetor na posião {i}: '))
-    numeros.append(valor)
-
-print('Vetor: ', numeros)
-print('Posição 1:', numeros[1])
+numeros = gerar_lista()
 
 # BUSCA LINEAR
 numero_pesquisar = int(input('Digite o valor a ser pesquisado no vetor: '))
 posicao_resultado = -1
 
-for i in range(tamanho):
+for i in range(len(numeros)):
     if numeros[i] == numero_pesquisar:
         posicao_resultado = i
         break
