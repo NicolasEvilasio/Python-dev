@@ -14,27 +14,26 @@ def busca_linear(valor_buscado: int, lista: list) -> int:
 
     Raises:
         AttributeError: Se o valor buscado não for encontrado na lista.
+
+    Examples:
+        >>> busca_linear(5, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        4
+        >>> busca_linear(10, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        Traceback (most recent call last):
+            ...
+        AttributeError: O elemento não foi encontrado no vetor
+        >>> busca_linear(3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        2
     """
     posicao_resultado = -1
 
     for i in range(len(lista)):
-        if numeros[i] == valor_buscado:
+        if lista[i] == valor_buscado:
             posicao_resultado = i
             break
 
     if posicao_resultado < 0:
-        print('O elemento não foi encontrado no vetor')
-        raise AttributeError
+        raise AttributeError('O elemento não foi encontrado no vetor')
 
     else:
         return posicao_resultado
-
-
-if __name__ == '__main__':
-    from gerar_lista import gerar_lista
-
-    numeros = gerar_lista()
-    numero_pesquisar = int(input('Digite o valor a ser pesquisado no vetor: '))
-    posicao = busca_linear(numero_pesquisar, numeros)
-
-    print(f'O elemento {numero_pesquisar} foi encontrado na posição {posicao}')

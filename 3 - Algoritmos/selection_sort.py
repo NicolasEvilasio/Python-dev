@@ -16,6 +16,10 @@ def selection_sort(lista: list) -> list:
     Examples:
         >>> selection_sort([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
         [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+        >>> selection_sort([5, 4, 3, 2, 1])
+        [1, 2, 3, 4, 5]
+        >>> selection_sort([1, 2, 3, 4, 5])
+        [1, 2, 3, 4, 5]
     """
     tamanho_lista = len(lista)
 
@@ -25,20 +29,12 @@ def selection_sort(lista: list) -> list:
 
     else:
         for i in range(tamanho_lista):
-            print(lista)
             menor_indice = i
 
             for j in range(i + 1, tamanho_lista):
-                if lista[j] < lista[i]:
+                if lista[j] < lista[menor_indice]:
                     menor_indice = j
 
             lista[i], lista[menor_indice] = lista[menor_indice], lista[i]
 
     return lista
-
-
-if __name__ == '__main__':
-    from gerar_lista import gerar_lista
-
-    numeros = gerar_lista()
-    print(selection_sort(numeros))
