@@ -1,3 +1,7 @@
+from selection_sort import selection_sort
+import copy
+
+
 def busca_binaria(valor_buscado: int, lista: list) -> int:
     """
     Realiza uma busca binária por um valor em uma lista e retorna a posição onde o valor foi encontrado.
@@ -23,7 +27,18 @@ def busca_binaria(valor_buscado: int, lista: list) -> int:
         >>> busca_binaria(3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
         2
         >>> busca_binaria(10, [])
+        Lista vazia
+        >>> busca_binaria(5, [5, 1, 2, 6, 3])
+        Traceback (most recent call last):
+            ...
+        ValueError: A lista não está ordenada
         """
+
+    # A busca binária funciona apenas em listas ordenadas
+    lista_ordenada = selection_sort(copy.deepcopy(lista))
+    if lista_ordenada != lista:
+        raise ValueError('A lista não está ordenada')
+
     inicio = 0
     fim = len(lista)
     meio = (inicio + fim) // 2
