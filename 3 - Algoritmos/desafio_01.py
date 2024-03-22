@@ -1,29 +1,3 @@
-from selection_sort import selection_sort
-"""
-Dado uma lista de produtos com as informações: Id, Nome e Quantidade. 
-
-1 - Ordene os dados de forma que sejam listados de acordo com os produtos com a quantidade em ordem decrescente. 
-2 - Caso dois produtos tenham a mesma quantidade, eles devem ser exibidos em ordem alfabética. 
-3 - Caso dois produtos tenham o mesmo nome, eles devem ser listados pelo id em ordem crescente.
-
-Entrada de dados
-
-5
-33 Monitor 10
-85 Mouse 7
-56 Notebook 3
-19 Processador 23
-22 HD 7
-Saída de dados
-
-Processador
-Monitor
-HD
-Mouse
-Notebook
-"""
-
-
 class Produto:
     def __init__(self, id, nome, quantidade):
         self.__id = id
@@ -55,24 +29,79 @@ class Produto:
         self.__quantidade = quantidade
 
 
+def sort_produtos(produtos):
+    """
+    Ordena a lista de produtos de acordo com as regras especificadas.
+
+    1. Ordene os dados de forma que sejam listados de acordo com os produtos com a quantidade em ordem decrescente.
+    2. Caso dois produtos tenham a mesma quantidade, eles devem ser exibidos em ordem alfabética.
+    3. Caso dois produtos tenham o mesmo nome, eles devem ser listados pelo id em ordem crescente.
+
+    :param produtos: Uma lista de objetos da classe Produto.
+    :return: None (a lista de produtos é ordenada in-place).
+
+    Examples:
+        >>> produto1 = Produto(1, 'ProdutoA', 10)
+        >>> produto2 = Produto(2, 'ProdutoB', 5)
+        >>> produto3 = Produto(3, 'ProdutoC', 10)
+        >>> produto4 = Produto(4, 'ProdutoD', 8)
+        >>> produtos = [produto1, produto2, produto3, produto4]
+        >>> sort_produtos(produtos)
+        >>> for p in produtos:
+        ...     print(p.quantidade, p.nome, p.id)
+        10 ProdutoA 1
+        10 ProdutoC 3
+        8 ProdutoD 4
+        5 ProdutoB 2
+
+        >>> produto1 = Produto(1, 'ProdutoA', 10)
+        >>> produto2 = Produto(2, 'ProdutoA', 10)
+        >>> produto3 = Produto(3, 'ProdutoC', 5)
+        >>> produto4 = Produto(4, 'ProdutoD', 8)
+        >>> produtos = [produto1, produto2, produto3, produto4]
+        >>> sort_produtos(produtos)
+        >>> for p in produtos:
+        ...     print(p.quantidade, p.nome, p.id)
+        10 ProdutoA 1
+        10 ProdutoA 2
+        8 ProdutoD 4
+        5 ProdutoC 3
+
+        >>> produto1 = Produto(1, 'ProdutoA', 10)
+        >>> produto2 = Produto(2, 'ProdutoA', 1)
+        >>> produto3 = Produto(3, 'ProdutoC', 5)
+        >>> produto4 = Produto(4, 'ProdutoD', 8)
+        >>> produtos = [produto1, produto2, produto3, produto4]
+        >>> sort_produtos(produtos)
+        >>> for p in produtos:
+        ...     print(p.quantidade, p.nome, p.id)
+        10 ProdutoA 1
+        8 ProdutoD 4
+        5 ProdutoC 3
+        1 ProdutoA 2
+    """
+    for i in range(len(produtos)):
+        maior_indice = i
+        for j in range(i + 1, len(produtos)):
+            if produtos[j].quantidade > produtos[maior_indice].quantidade:
+                maior_indice = j
+            elif produtos[j].quantidade == produtos[maior_indice].quantidade:
+                maior_indice = j if produtos[j].nome < produtos[maior_indice].nome else maior_indice
+                if produtos[j].nome == produtos[maior_indice].nome:
+                    maior_indice = j if produtos[j].id < produtos[maior_indice].id else maior_indice
+        produtos[i], produtos[maior_indice] = produtos[maior_indice], produtos[i]
+
+
 if __name__ == '__main__':
 
     t = int(input())
     produtos = list()
-    for i in range(t):
-        id, nome, quantidade = input().split(' ')
-
+    for _ in range(t):
+        id, nome, quantidade = input().split()
         produto = Produto(int(id), nome, int(quantidade))
         produtos.append(produto)
 
-    # Selection sort - requisito 01
-    for i in range(t):
-        menor_indice = i
-        for j in range(i + 1, t):
-            if produtos[j].quantidade < produtos[menor_indice].quantidade:
-                menor_indice = j
-
-        produtos[i], produtos[menor_indice] = produtos[menor_indice], produtos[i]
+    sort_produtos(produtos)
 
     for p in produtos:
-        print(p.quantidade)
+        print(p.quantidade, p.nome, p.id)
